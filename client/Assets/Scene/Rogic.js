@@ -1,5 +1,6 @@
 ﻿#pragma strict
 
+// 盤面
 private var board = [
     [0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0],
@@ -9,9 +10,12 @@ private var board = [
     [0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0],
     [0,0,0,0,0,0,0,0]
-    ];
+];
+// ゲームオブジェクト
 var piecePrefab : GameObject;
+// 石のリスト
 private var pieceList : GameObject[,] = new GameObject[8,8];
+// 石の種類
 private var pieceType : int = 0;
 private var white : int = 0;
 private var black : int = 0;
@@ -21,17 +25,20 @@ var labelStylePieceType : GUIStyle;
 var labelStyleGameOver : GUIStyle;
 
 function Start () {
- pieceType = 2; putPiece(Vector2(3,3));
-    pieceType = 1; putPiece(Vector2(3,4));
-    pieceType = 1; putPiece(Vector2(4,3));
-    pieceType = 2; putPiece(Vector2(4,4));
+// pieceType = 2; putPiece(Vector2(3,3));
+ //   pieceType = 1; putPiece(Vector2(3,4));
+  //  pieceType = 1; putPiece(Vector2(4,3));
+   // pieceType = 2; putPiece(Vector2(4,4));
 }
 
 function Update(){
+
 }
+
 
 // 石を板に置く
 function putPiece(key:Vector2) {
+ 
     if (key.x < 0 || key.y < 0 || key.x > 7 || key.y > 7) {
         return;
     }
@@ -55,8 +62,13 @@ function putPiece(key:Vector2) {
         } else {
             rotation = Quaternion.AngleAxis(0, Vector3(1, 0, 0));
         }
+
+        // 石の生成
         pieceList[key.x, key.y] = Instantiate(piecePrefab, position, rotation);
+       
+        // 置く石の種類
         pieceType = pieceType == 1 ? 2 : 1;
+
         // 置くところが無いかチェック
         if (!checkEnablePut() && !initialFlag) {
             pieceType = pieceType == 1 ? 2 : 1;
@@ -98,7 +110,8 @@ function checkEnablePut() {
  
 // 盤面の更新、updateFlag が false なら
 // その場所に置けるかどうかのチェックだけ。
-function updateBoard(key:Vector2, updateFlag: boolean) {
+function updateBoard(key:Vector2, updateFlag: boolean)
+ {
     var ix = 0; var iy = 0;
     var revList : Array[] = new Array[8];
     var changeFlag = false;

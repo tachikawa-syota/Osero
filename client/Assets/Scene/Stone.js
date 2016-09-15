@@ -7,6 +7,6 @@ function Update () {
         var v = Camera.main.ScreenToWorldPoint(screenPoint);
         var key_x = Mathf.Floor(v.x);
         var key_y = Mathf.Floor(v.z);
-        GameObject.FindWithTag("GameController").SendMessage("putPiece", Vector2(key_x, key_y));
+   //     GameObject.FindWithTag("GameController").SendMessage("putPiece", Vector2(key_x, key_y));
     }
 }
