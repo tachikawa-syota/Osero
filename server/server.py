@@ -20,7 +20,7 @@ FPS = 40 # FPS
 
 FRAME_SEC =  1 / 40 # 1フレーム当たりの秒数
 
-HOST = 'localhost' # Host IPアドレス
+HOST = '10.0.2.15' # Host IPアドレス
 
 PORT = 5678 # Port番号
 
@@ -79,7 +79,7 @@ async def handle(websocket, path):
             raise RuntimeError('Method not found in message.')
         payload = message.get('payload')
         logger.debug('<< method:{}, payload:{}'.format(method, payload))
-
+        
         # メソッドのディスパッチ
         method_name = '_' + method
         f = getattr(thismodule, method_name, None)
@@ -105,14 +105,23 @@ async def _ping(websocket, name):
 async def _broadcast(websocket, name):
     u"""Broadcastのテスト
     """
-    logger.debug(">> boradcast by {}".format(name))
+    logger.debug('>> boradcast by {}'.format(name))
     data = dict(
         method='broadcast'
     )
     await broadcast(json.dumps(data))
 
+async def _keypos(websocket,x,y):
+    u"""
+    """
+    logger.debug('>> keyPos by {}'.format(name))
+    await broadcast(json.dumps(data))
+    pass
+
+
 
 start_server = websockets.serve(
+
     on_connected, HOST, PORT
 )
 
