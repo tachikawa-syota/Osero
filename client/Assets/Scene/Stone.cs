@@ -22,9 +22,9 @@ public class Stone : MonoBehaviour
 			data.keyPos.x = key_x;
 			data.keyPos.y = key_y;
 
-			WebSocketClient ws = new WebSocketClient ();
-			ws.SendData ();
-
+			// ソケットクライアントに座標データを転送
+			GameObject.FindWithTag("WebSocketClient").SendMessage("SendData",new Vector2(key_x, key_y));
+			// 盤上にコマを置く
 			GameObject.FindWithTag("GameController").SendMessage("putPiece", new Vector2(key_x, key_y));
 		}
 	}

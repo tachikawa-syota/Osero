@@ -1,0 +1,204 @@
+Initialize engine version: 5.4.0f3 (a6d8d714de6f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 960 (ID=0x1401)
+    Vendor:   NVIDIA
+    VRAM:     1969 MB
+Default GameObject Tag: New Tag already registered
+ 
+(Filename:  Line: 88)
+
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Newtonsoft.Json.dll (this message is harmless)
+Loading C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Newtonsoft.Json.dll into Unity Child Domain
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\websocket-sharp.dll (this message is harmless)
+Loading C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\websocket-sharp.dll into Unity Child Domain
+- Completed reload, in  0.046 seconds
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+The class named 'Packet' is not derived from MonoBehaviour or ScriptableObject!
+ 
+(Filename:  Line: 1510)
+
+The class named 'Packet' is not derived from MonoBehaviour or ScriptableObject!
+ 
+(Filename:  Line: 1510)
+
+The class named 'Packet' is not derived from MonoBehaviour or ScriptableObject!
+ 
+(Filename:  Line: 1510)
+
+UnloadTime: 0.936458 ms
+9/16/2016 4:50:18 PM|Warn |Logger.set_Level|The current logging level has been changed to Trace.
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Mono.Security.dll (this message is harmless)
+9/16/2016 4:50:18 PM|Debug|WebSocket.sendHttpRequest|A request to the server:
+                           GET / HTTP/1.1
+                           User-Agent: websocket-sharp/1.0
+                           Host: 127.0.0.1:25678
+                           Upgrade: websocket
+                           Connection: Upgrade
+                           Sec-WebSocket-Key: 1SiypPlfhDBnkyJh4TxdYw==
+                           Sec-WebSocket-Version: 13
+9/16/2016 4:50:18 PM|Debug|WebSocket.sendHttpRequest|A response to this request:
+                           HTTP/1.1 101 Switching Protocols
+                           Server: Python/3.5 websockets/3.2
+                           Upgrade: WebSocket
+                           Connection: Upgrade
+                           Sec-WebSocket-Accept: cDu41fS4RAy9ziG/xxDoZKr53SU=
+opened.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2100 -> priority: 1 
+  Thread -> id: 6db4 -> priority: 1 
+Platform assembly: C:\Users\intern\Desktop\Osero\client\Osero_Data\Managed\Boo.Lang.dll (this message is harmless)
+{"method":"ping","payload":{"x":0.0,"y":0.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"keypos","payload":{"x":2.0,"y":2.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+(2.0, 2.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+onmessage{"y": 2.0, "x": 2.0, "name": "tachikawa"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+cannot put here
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+9/16/2016 4:50:20 PM|Error|WebSocket.messagec|System.NullReferenceException: 
+                             at (wrapper managed-to-native) UnityEngine.Component:get_transform ()
+                             at Rogic.Put (Vector2 key) [0x00000] in <filename unknown>:0 
+                             at WebSocketClient.<Start>m__1 (System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.Ext.Emit[MessageEventArgs] (System.EventHandler`1 eventHandler, System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.WebSocket.messagec (WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+error:An exception has occurred during an OnMessage event.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"ping","payload":{"x":0.0,"y":0.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"keypos","payload":{"x":3.0,"y":3.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+(3.0, 3.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+onmessage{"y": 3.0, "x": 3.0, "name": "tachikawa"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+9/16/2016 4:50:20 PM|Error|WebSocket.messagec|System.NullReferenceException: 
+                             at (wrapper managed-to-native) UnityEngine.Component:get_transform ()
+                             at Rogic.Put (Vector2 key) [0x00000] in <filename unknown>:0 
+                             at WebSocketClient.<Start>m__1 (System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.Ext.Emit[MessageEventArgs] (System.EventHandler`1 eventHandler, System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.WebSocket.messagec (WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+error:An exception has occurred during an OnMessage event.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"ping","payload":{"x":0.0,"y":0.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"keypos","payload":{"x":3.0,"y":4.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+(3.0, 4.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+onmessage{"y": 4.0, "x": 3.0, "name": "tachikawa"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+9/16/2016 4:50:20 PM|Error|WebSocket.messagec|System.NullReferenceException: 
+                             at (wrapper managed-to-native) UnityEngine.Component:get_transform ()
+                             at Rogic.Put (Vector2 key) [0x00000] in <filename unknown>:0 
+                             at WebSocketClient.<Start>m__1 (System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.Ext.Emit[MessageEventArgs] (System.EventHandler`1 eventHandler, System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.WebSocket.messagec (WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+error:An exception has occurred during an OnMessage event.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"ping","payload":{"x":0.0,"y":0.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"keypos","payload":{"x":4.0,"y":4.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+(4.0, 4.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+onmessage{"y": 4.0, "x": 4.0, "name": "tachikawa"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+9/16/2016 4:50:21 PM|Error|WebSocket.messagec|System.NullReferenceException: 
+                             at (wrapper managed-to-native) UnityEngine.Component:get_transform ()
+                             at Rogic.Put (Vector2 key) [0x00000] in <filename unknown>:0 
+                             at WebSocketClient.<Start>m__1 (System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.Ext.Emit[MessageEventArgs] (System.EventHandler`1 eventHandler, System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.WebSocket.messagec (WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+error:An exception has occurred during an OnMessage event.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"ping","payload":{"x":0.0,"y":0.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+{"method":"keypos","payload":{"x":4.0,"y":3.0,"name":"tachikawa"},"keyPos":{"x":0.0,"y":0.0}}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+(4.0, 3.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+onmessage{"y": 3.0, "x": 4.0, "name": "tachikawa"}
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+
+9/16/2016 4:50:21 PM|Error|WebSocket.messagec|System.NullReferenceException: 
+                             at (wrapper managed-to-native) UnityEngine.Component:get_transform ()
+                             at Rogic.Put (Vector2 key) [0x00000] in <filename unknown>:0 
+                             at WebSocketClient.<Start>m__1 (System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.Ext.Emit[MessageEventArgs] (System.EventHandler`1 eventHandler, System.Object sender, WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+                             at WebSocketSharp.WebSocket.messagec (WebSocketSharp.MessageEventArgs e) [0x00000] in <filename unknown>:0 
+error:An exception has occurred during an OnMessage event.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 42)
+

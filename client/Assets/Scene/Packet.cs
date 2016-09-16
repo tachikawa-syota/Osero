@@ -12,16 +12,12 @@ public class Packet
 
 	[SerializeField]
 	public Payload payload = new Payload();
-
+	[SerializeField]
 	public Vector2 keyPos = new Vector2 ();
+
 	// Use this for initialization
 	void Start () {
 
-		/*
-		keyPos= new Vector2(0,0);
-		ping = "ping";
-		method = "ping";
-		*/
 	}
 	
 	// Update is called once per frame
@@ -33,6 +29,12 @@ public class Packet
 [Serializable]
 public class Payload
 {
+	[SerializeField]
+	public float x;
+
+	[SerializeField]
+	public float y;
+
 	[SerializeField]
 	public string name;
 }

@@ -61,11 +61,23 @@ public class Rogic : MonoBehaviour
 
     }
 
+	bool flag=false;
+	public bool fromServer()
+	{
+		return flag;
+	}
+
+	public void SetFlag(bool bFlag)
+	{
+		flag = bFlag;
+	}
+
 
     // 石を板に置く
-	IEnumerator putPiece(Vector2 key)
+	public int putPiece(Vector2 key)
 	{
 		Debug.Log (key);
+		// 座標補正
 		if (key.x == 8) {
 			key.x = 0;
 		} else if (key.x == -1) {
@@ -74,23 +86,28 @@ public class Rogic : MonoBehaviour
 			key.y = 0;
 		} else if (key.y == 8) {
 			key.y = 7;
-		} else {
-			yield return -1;
 		}
 
+		// 範囲外
         if (key.x < 0 || key.y < 0 || key.x > 7 || key.y > 7)
         {
-			yield return -1;
+			return -1;
         }
+		// すでに盤にコマが置かれている
 		if (board[(int)key.x,(int)key.y] != 0)
         {
-			yield return -1;
+			return -1;
         }
 
 		// 石の種類セット
 		board[(int)key.x,(int)key.y] = pieceType;
 		// めくりフラグ
         bool changeFlag = updateBoard(key, true);
+		// サーバーからきたデータはFlagをONにする
+		if (fromServer ()) {
+			changeFlag = true;
+			flag = false;
+		}
 
         // initial position
         bool initialFlag = false;
@@ -98,10 +115,11 @@ public class Rogic : MonoBehaviour
         {
             initialFlag = true;
         }
-        if (changeFlag || initialFlag)
+		if (changeFlag || initialFlag)
         {
             calcStatus();
-			Quaternion rotation = transform.rotation;
+			Quaternion rotation = new Quaternion (0.0f, 0.0f, 0.0f, 1.0f);
+		//	Quaternion rotation = transform.rotation;
             Vector3 position = new Vector3(key.x + 0.5f, 1, key.y + 0.5f);
             if (pieceType == 1)
             {
@@ -127,9 +145,9 @@ public class Rogic : MonoBehaviour
                 {
                     Debug.Log("game over");
                     gamestatus = "gameover";
-           //         yield return new WaitForSeconds(2.0f);
-                    while (!Input.GetButtonDown("Fire1") || Input.touches.Length > 0) yield return 0;
-//                    Application.LoadLevel("GameMain");
+					while (!Input.GetButtonDown ("Fire1")) { 
+						return 0;
+					}
 					SceneManager.LoadScene ("GameMain");
 				}
             }
@@ -151,9 +169,9 @@ public class Rogic : MonoBehaviour
 //            Debug.Log(_s);
         }
 
-		yield return 0;
+		return 0;
     }
-
+		
     // 置ける場所があるかどうか検索
     bool checkEnablePut()
     {
@@ -434,12 +452,12 @@ public class Rogic : MonoBehaviour
     }
 
 	// UIの描画
-    void OnGUI()
+	public void OnGUI()
     {
         Rect rect_score = new Rect(0, 0, Screen.width, Screen.height);
         GUI.Label(rect_score, "WHITE:" + white + "\nBLACK:" + black, labelStyleScore);
 
-        Rect rect_piece = new Rect(0, 0, Screen.width, Screen.height);
+        Rect rect_piece = new Rect(0, 100, Screen.width, Screen.height);
 		string piece = pieceType == 1 ? "black" : "white";
         GUI.Label(rect_piece, piece, labelStylePieceType);
 

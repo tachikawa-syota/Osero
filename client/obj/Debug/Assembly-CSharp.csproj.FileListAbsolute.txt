@@ -18,6 +18,6 @@ C:\Users\intern\Desktop\Osero\client\Temp\bin\Debug\UnityEngine.xml
 C:\Users\intern\Desktop\Osero\client\Temp\bin\Debug\UnityEditor.xml
 C:\Users\intern\Desktop\Osero\client\Temp\bin\Debug\UnityEngine.UI.xml
 C:\Users\intern\Desktop\Osero\client\Temp\bin\Debug\UnityEngine.Networking.xml
+C:\Users\intern\Desktop\Osero\client\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\intern\Desktop\Osero\client\obj\Debug\Assembly-CSharp.dll
 C:\Users\intern\Desktop\Osero\client\obj\Debug\Assembly-CSharp.pdb
-C:\Users\intern\Desktop\Osero\client\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
