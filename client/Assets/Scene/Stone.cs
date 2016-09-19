@@ -9,8 +9,10 @@ public class Stone : MonoBehaviour
 	// 更新
 	void  Update ()
 	{
+		// キー入力
 		if (Input.GetButtonDown("Fire1")) 
 		{
+			// ワールド変換
 			Vector3 screenPoint= Input.mousePosition;      
 			screenPoint.z = 10;
 			Vector3 v= Camera.main.ScreenToWorldPoint(screenPoint);

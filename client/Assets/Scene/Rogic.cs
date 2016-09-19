@@ -58,7 +58,6 @@ public class Rogic : MonoBehaviour
 
     void Update()
     {
-
     }
 
 	bool flag=false;
@@ -109,7 +108,7 @@ public class Rogic : MonoBehaviour
 			flag = false;
 		}
 
-        // initial position
+        // 初期座標
         bool initialFlag = false;
 		if (key == initPiece1 || key == initPiece2 || key == initPiece3 || key == initPiece4)
         {
@@ -119,9 +118,10 @@ public class Rogic : MonoBehaviour
         {
             calcStatus();
 			Quaternion rotation = new Quaternion (0.0f, 0.0f, 0.0f, 1.0f);
-		//	Quaternion rotation = transform.rotation;
             Vector3 position = new Vector3(key.x + 0.5f, 1, key.y + 0.5f);
-            if (pieceType == 1)
+    
+			// 石の種類によって向きを変える
+			if (pieceType == 1)
             {
 				rotation = Quaternion.AngleAxis(180, new Vector3(1, 0, 0));
             }
@@ -157,18 +157,7 @@ public class Rogic : MonoBehaviour
             Debug.Log("cannot put here");
 			board [(int)key.x, (int)key.y] = 0;
         }
-
-        // for debug
-        for (int i = 0; i < 8; i++)
-        {
-            string _s = "";
-            for (int j = 0; j < 8; j++)
-            {
-                _s = _s + " " + board[i,j];
-            }
-//            Debug.Log(_s);
-        }
-
+			
 		return 0;
     }
 		

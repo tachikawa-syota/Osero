@@ -3,17 +3,9 @@ using WebSocketSharp;
 // Jsonを使えるようにする
 using Newtonsoft.Json;
 
-/**
-* @brief WebSoketClient
-*/
+// ウェブソケットクライアント
 public class WebSocketClient : MonoBehaviour 
 {
-	//		mothod: "keypos",
-	//		payload: {
-	//			x: 10,
-	//			y: 10,
-	//		}
-
 	// Json用文字列
 	string strJson;
 
@@ -22,12 +14,14 @@ public class WebSocketClient : MonoBehaviour
 	// パケット
 	private Packet packet;
 
+	// 初期化
 	void Start()
 	{
 		// 接続
 		ws = new WebSocket("ws://127.0.0.1:25678");
 		ws.Log.Level = LogLevel.Trace;
 
+		// 開く
 		ws.OnOpen += (sender, e) =>
 		{
 			Debug.Log("opened.");
@@ -65,7 +59,6 @@ public class WebSocketClient : MonoBehaviour
 		ws.Connect ();
 	}
 
-
 	// サーバー側にデータを転送する
 	public void SendData(Vector2 pos)
 	{
@@ -93,28 +86,5 @@ public class WebSocketClient : MonoBehaviour
 		Debug.Log (strJson);
 		// サーバーに送る
 		this.ws.Send (strJson);
-	}
-
-
-		
-	void OnGUI()
-	{			
-		if(Input.GetButtonDown("Fire2")){
-			// パケットを取得
-			Packet data = new Packet();
-			//data.keyPos = new Vector2 (3, 3);
-			// インスタンスを取得
-			data.payload = new Payload();
-			data.payload.name = "tachikawa";
-			data.method = "ping";
-
-			// シリアライズする
-			string method = JsonUtility.ToJson(data);
-
-			Debug.Log (method);
-			// サーバーに送る
-			ws.Send (method);
-		}
-
 	}
 }

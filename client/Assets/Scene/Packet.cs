@@ -6,12 +6,12 @@ using System.Collections;
 [Serializable]
 public class Packet
 {
-	// 入力されたキー座標
 	[SerializeField]
 	public string method;
 
 	[SerializeField]
 	public Payload payload = new Payload();
+
 	[SerializeField]
 	public Vector2 keyPos = new Vector2 ();
 
