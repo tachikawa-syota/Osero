@@ -16,19 +16,20 @@ public class Rogic : MonoBehaviour
     // 石のリスト
 	private GameObject[,] pieceList = new GameObject[8, 8];
 	// 石の種類
-	private int pieceType = 0;
-    private int white = 0;
-    private int black = 0;
-    private string gamestatus = "play";
-    public GUIStyle labelStyleScore;
-	public GUIStyle labelStylePieceType;
-	public GUIStyle labelStyleGameOver;
+	private int m_pieceType = 0;
+    private int m_whiteStone = 0;
+	private int m_blackStone = 0;
+    private string m_gameState = "play";
 
 	// 初期座標
 	private Vector2 initPiece1 = new Vector2 (3, 3);
 	private Vector2 initPiece2 = new Vector2 (3, 4);
 	private Vector2 initPiece3= new Vector2 (4, 3);
 	private Vector2 initPiece4 = new Vector2 (4, 4);
+
+	public GUIStyle m_labelStyleScore;
+	public GUIStyle m_labelStylePieceType;
+	public GUIStyle m_labelStyleGameOver;
 
 	// 初期化
     void Awake()
@@ -46,18 +47,21 @@ public class Rogic : MonoBehaviour
 		Vector2 initPiece4 = new Vector2 (4, 4);
 
 		// 石の生成
-		pieceType = 2;
+		m_pieceType = 2;
 		putPiece(initPiece1);
-		pieceType = 1; 
+		m_pieceType = 1; 
 		putPiece(initPiece2);
-		pieceType = 1; 
+		m_pieceType = 1; 
 		putPiece(initPiece3);
-		pieceType = 2; 
+		m_pieceType = 2; 
 		putPiece(initPiece4);
+	
     }
 
     void Update()
-    {
+	{
+
+	//	renderUI.OnGUI (m_whiteStone, m_blackStone, m_pieceType, m_gameState);
     }
 
 	bool flag=false;
@@ -75,15 +79,14 @@ public class Rogic : MonoBehaviour
     // 石を板に置く
 	public int putPiece(Vector2 key)
 	{
-		Debug.Log (key);
 		// 座標補正
-		if (key.x == 8) {
-			key.x = 0;
-		} else if (key.x == -1) {
+		if (key.x > 7) {
 			key.x = 7;
-		} else if (key.y == -1) {
+		} else if (key.x < 0) {
+			key.x = 0;
+		} else if (key.y < 0) {
 			key.y = 0;
-		} else if (key.y == 8) {
+		} else if (key.y > 7) {
 			key.y = 7;
 		}
 
@@ -99,7 +102,7 @@ public class Rogic : MonoBehaviour
         }
 
 		// 石の種類セット
-		board[(int)key.x,(int)key.y] = pieceType;
+		board[(int)key.x,(int)key.y] = m_pieceType;
 		// めくりフラグ
         bool changeFlag = updateBoard(key, true);
 		// サーバーからきたデータはFlagをONにする
@@ -118,10 +121,10 @@ public class Rogic : MonoBehaviour
         {
             calcStatus();
 			Quaternion rotation = new Quaternion (0.0f, 0.0f, 0.0f, 1.0f);
-            Vector3 position = new Vector3(key.x + 0.5f, 1, key.y + 0.5f);
+			Vector3 position = new Vector3(key.x + 0.5f, 1, key.y + 0.5f);
     
 			// 石の種類によって向きを変える
-			if (pieceType == 1)
+			if (m_pieceType == 1)
             {
 				rotation = Quaternion.AngleAxis(180, new Vector3(1, 0, 0));
             }
@@ -134,21 +137,20 @@ public class Rogic : MonoBehaviour
 			pieceList[(int)key.x,(int) key.y] = (GameObject)Instantiate(piecePrefab, position, rotation);
 
             // 置く石の種類
-            pieceType = pieceType == 1 ? 2 : 1;
+			m_pieceType = m_pieceType == 1 ? 2 : 1;
 
             // 置くところが無いかチェック
             if (!checkEnablePut() && !initialFlag)
             {
-                pieceType = pieceType == 1 ? 2 : 1;
+				m_pieceType = m_pieceType == 1 ? 2 : 1;
                 // 攻守交代2回してどこも置けなかったらそのゲームは終了
                 if (!checkEnablePut() && !initialFlag)
                 {
                     Debug.Log("game over");
-                    gamestatus = "gameover";
-					while (!Input.GetButtonDown ("Fire1")) { 
-						return 0;
-					}
-					SceneManager.LoadScene ("GameMain");
+					m_gameState = "gameover";
+
+		//			ActionButton actionButton = new ActionButton ();
+		//			actionButton.Scene ();
 				}
             }
         }
@@ -195,7 +197,7 @@ public class Rogic : MonoBehaviour
                 revList[0].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
 				revList[0].Add(new Vector2(ix, iy));
             }
@@ -221,7 +223,7 @@ public class Rogic : MonoBehaviour
                 revList[1].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
                 revList[1].Add(new Vector2(ix, iy));
             }
@@ -248,7 +250,7 @@ public class Rogic : MonoBehaviour
                 revList[2].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
                 revList[2].Add(new Vector2(ix, iy));
             }
@@ -274,7 +276,7 @@ public class Rogic : MonoBehaviour
                 revList[3].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
                 revList[3].Add(new Vector2(ix, iy));
             }
@@ -301,7 +303,7 @@ public class Rogic : MonoBehaviour
                 revList[4].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
                 revList[4].Add(new Vector2(ix, iy));
             }
@@ -327,7 +329,7 @@ public class Rogic : MonoBehaviour
                 revList[5].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
                 revList[5].Add(new Vector2(ix, iy));
             }
@@ -354,7 +356,7 @@ public class Rogic : MonoBehaviour
                 revList[6].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
                 revList[6].Add(new Vector2(ix, iy));
             }
@@ -380,7 +382,7 @@ public class Rogic : MonoBehaviour
                 revList[7].Clear();
                 break;
             }
-            if (board[ix,iy] > 0 && board[ix,iy] != pieceType)
+			if (board[ix,iy] > 0 && board[ix,iy] != m_pieceType)
             {
                 revList[7].Add(new Vector2(ix, iy));
             }
@@ -436,37 +438,46 @@ public class Rogic : MonoBehaviour
                 }
             }
         }
-        white = _white;
-        black = _black;
+		m_whiteStone = _white;
+        m_blackStone = _black;
     }
 
-	// UIの描画
-	public void OnGUI()
-    {
-        Rect rect_score = new Rect(0, 0, Screen.width, Screen.height);
-        GUI.Label(rect_score, "WHITE:" + white + "\nBLACK:" + black, labelStyleScore);
+	// UIの描画(ここにRogic内で記述しないとエラーが出る)
+	void OnGUI()
+	{
+		Rect rectScore = new Rect (0, 0, Screen.width, Screen.height);
 
-        Rect rect_piece = new Rect(0, 100, Screen.width, Screen.height);
-		string piece = pieceType == 1 ? "black" : "white";
-        GUI.Label(rect_piece, piece, labelStylePieceType);
+		GUI.Label (rectScore, "WHITE:" + m_whiteStone + "\nBLACK:" + m_blackStone, m_labelStyleScore);
+		Rect rectPiece = new Rect (0, 100, Screen.width, Screen.height);
+		string piece = m_pieceType == 1 ? "black" : "white";
 
-        Rect rect_gameover = new Rect(0, Screen.height / 2 - 25, Screen.width, 50);
-        if (gamestatus == "gameover")
-        {
+		GUI.Label (rectPiece, piece, m_labelStylePieceType);
+
+		Rect rect_gameover = new Rect (0, Screen.height / 2 - 25, Screen.width, 50);
+
+		if (m_gameState == "gameover") {
 			string result = "";
-            if (white > black)
-            {
-                result = "white win!";
-            }
-            else if (white < black)
-            {
-                result = "black win!";
-            }
-            else
-            {
-                result = "draw...";
-            }
-            GUI.Label(rect_gameover, result, labelStyleGameOver);
-        }
+			if (m_whiteStone > m_blackStone) {
+				result = "white win!";
+			} else if (m_whiteStone < m_blackStone) {
+				result = "black win!";
+			} else {
+				result = "draw...";
+			}
+
+			GUI.Label (rect_gameover, result, m_labelStyleGameOver);
+
+			int halfWidth = Screen.width / 2;
+			int halfHeight = Screen.height / 2;
+		
+			// ボタンが入力されたら
+			if (GUI.Button (new Rect (halfWidth - 70, halfHeight - 30, 70, 30), "OK"))
+			{
+				ChangeScene changeScene = new ChangeScene ();
+				changeScene.Run ();
+			}
+
+		}
 	}
 };
+
