@@ -13,18 +13,22 @@ public class WebSocketClient : MonoBehaviour
 	private WebSocket ws;
 	// パケット
 	private Packet packet;
+	// ソケットが開かれたかどうかのフラグ
+	bool m_flag = false;
 
-	// 初期化
-	void Start()
+	// 初期化をする
+	public void Initialize()
 	{
 		// 接続
-		ws = new WebSocket("ws://127.0.0.1:25678");
+		ws = new WebSocket("ws://192.168.56.101:5678");
 		ws.Log.Level = LogLevel.Trace;
 
 		// 開く
 		ws.OnOpen += (sender, e) =>
 		{
 			Debug.Log("opened.");
+			// フラグをONにする
+			m_flag = true;
 		};
 
 
@@ -39,7 +43,6 @@ public class WebSocketClient : MonoBehaviour
 			pack.payload = JsonUtility.FromJson<Payload>(e.Data);
 			// 石を置く
 			Rogic r = new Rogic();
-			r.SetFlag(true);
 			r.putPiece(new Vector2(pack.payload.x, pack.payload.y));			
 		};
 
@@ -58,6 +61,7 @@ public class WebSocketClient : MonoBehaviour
 		// コネクト
 		ws.Connect ();
 	}
+
 
 	// サーバー側にデータを転送する
 	public void SendData(Vector2 pos)
@@ -86,5 +90,11 @@ public class WebSocketClient : MonoBehaviour
 		Debug.Log (strJson);
 		// サーバーに送る
 		this.ws.Send (strJson);
+	}
+
+	// ソケットが開かれているかどうかのチェック
+	public bool CheckSocket()
+	{
+		return m_flag;
 	}
 }

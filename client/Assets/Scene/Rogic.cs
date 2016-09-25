@@ -19,7 +19,7 @@ public class Rogic : MonoBehaviour
 	private int m_pieceType = 0;
     private int m_whiteStone = 0;
 	private int m_blackStone = 0;
-    private string m_gameState = "play";
+	private string m_gameState = "gameover";
 
 	// 初期座標
 	private Vector2 initPiece1 = new Vector2 (3, 3);
@@ -27,9 +27,18 @@ public class Rogic : MonoBehaviour
 	private Vector2 initPiece3= new Vector2 (4, 3);
 	private Vector2 initPiece4 = new Vector2 (4, 4);
 
-	public GUIStyle m_labelStyleScore;
-	public GUIStyle m_labelStylePieceType;
-	public GUIStyle m_labelStyleGameOver;
+	// 黒石のスコアラベルスタイル
+	private GUIStyle m_styleScoreBlack = new GUIStyle();
+	// 白石のスコアラベルスタイル
+	private GUIStyle m_styleScoreWhite = new GUIStyle();
+	// 手番ラベルスタイル
+	private GUIStyle m_stylePieceType = new GUIStyle();
+	// ゲームオーバーラベルスタイル
+	private GUIStyle m_styleGameOver = new GUIStyle();
+	// 白色
+	private GUIStyleState m_textWhite = new GUIStyleState();
+	// 赤色
+	private GUIStyleState m_textRed = new GUIStyleState();
 
 	// 初期化
     void Awake()
@@ -55,26 +64,18 @@ public class Rogic : MonoBehaviour
 		putPiece(initPiece3);
 		m_pieceType = 2; 
 		putPiece(initPiece4);
-	
+
+		m_styleGameOver.fontSize = 50;
+		m_stylePieceType.fontSize = 20;
+		m_styleScoreBlack.fontSize = 26;
+		m_styleScoreWhite.fontSize = 26;
+		// テキストカラー(白)
+		m_textWhite.textColor = new Color(1.0f,1.0f,1.0f);
+		// テキストカラー(赤)
+		m_textRed.textColor = new Color (1.0f, 0.0f, 0.0f);
+		m_styleGameOver.normal = m_textRed;
+		m_styleScoreWhite.normal = m_textWhite;
     }
-
-    void Update()
-	{
-
-	//	renderUI.OnGUI (m_whiteStone, m_blackStone, m_pieceType, m_gameState);
-    }
-
-	bool flag=false;
-	public bool fromServer()
-	{
-		return flag;
-	}
-
-	public void SetFlag(bool bFlag)
-	{
-		flag = bFlag;
-	}
-
 
     // 石を板に置く
 	public int putPiece(Vector2 key)
@@ -105,11 +106,6 @@ public class Rogic : MonoBehaviour
 		board[(int)key.x,(int)key.y] = m_pieceType;
 		// めくりフラグ
         bool changeFlag = updateBoard(key, true);
-		// サーバーからきたデータはFlagをONにする
-		if (fromServer ()) {
-			changeFlag = true;
-			flag = false;
-		}
 
         // 初期座標
         bool initialFlag = false;
@@ -120,7 +116,9 @@ public class Rogic : MonoBehaviour
 		if (changeFlag || initialFlag)
         {
             calcStatus();
+			// 向き
 			Quaternion rotation = new Quaternion (0.0f, 0.0f, 0.0f, 1.0f);
+			// 座標
 			Vector3 position = new Vector3(key.x + 0.5f, 1, key.y + 0.5f);
     
 			// 石の種類によって向きを変える
@@ -148,9 +146,6 @@ public class Rogic : MonoBehaviour
                 {
                     Debug.Log("game over");
 					m_gameState = "gameover";
-
-		//			ActionButton actionButton = new ActionButton ();
-		//			actionButton.Scene ();
 				}
             }
         }
@@ -445,15 +440,18 @@ public class Rogic : MonoBehaviour
 	// UIの描画(ここにRogic内で記述しないとエラーが出る)
 	void OnGUI()
 	{
-		Rect rectScore = new Rect (0, 0, Screen.width, Screen.height);
+		// 黒石の数のラベル範囲
+		Rect rectBlack = new Rect (0, 0, Screen.width, Screen.height);
+		GUI.Label (rectBlack, "BLACK:" + m_whiteStone, m_styleScoreBlack);
 
-		GUI.Label (rectScore, "WHITE:" + m_whiteStone + "\nBLACK:" + m_blackStone, m_labelStyleScore);
+		// 白石の数のラベル範囲
+		Rect rectWhite = new Rect (0, 40, Screen.width, Screen.height);
+		GUI.Label (rectWhite, "WHITE:" + m_blackStone, m_styleScoreWhite);
+
 		Rect rectPiece = new Rect (0, 100, Screen.width, Screen.height);
 		string piece = m_pieceType == 1 ? "black" : "white";
 
-		GUI.Label (rectPiece, piece, m_labelStylePieceType);
-
-		Rect rect_gameover = new Rect (0, Screen.height / 2 - 25, Screen.width, 50);
+		GUI.Label (rectPiece, piece, m_stylePieceType);
 
 		if (m_gameState == "gameover") {
 			string result = "";
@@ -465,10 +463,12 @@ public class Rogic : MonoBehaviour
 				result = "draw...";
 			}
 
-			GUI.Label (rect_gameover, result, m_labelStyleGameOver);
-
+			// ウィンドウサイズ半分
 			int halfWidth = Screen.width / 2;
 			int halfHeight = Screen.height / 2;
+
+			// リザルトの描画
+			GUI.Label (new Rect(halfWidth, halfHeight, 200.0f, 200.0f), result, m_styleGameOver);
 		
 			// ボタンが入力されたら
 			if (GUI.Button (new Rect (halfWidth - 70, halfHeight - 30, 70, 30), "OK"))
