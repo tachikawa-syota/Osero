@@ -42,8 +42,8 @@ public class WebSocketClient : MonoBehaviour
 			// デシリアライズ
 			pack.payload = JsonUtility.FromJson<Payload>(e.Data);
 			// 石を置く
-			Rogic r = new Rogic();
-			r.putPiece(new Vector2(pack.payload.x, pack.payload.y));			
+			Logic r = new Logic();
+			r.PutPiece(new Vector2(pack.payload.x, pack.payload.y));			
 		};
 
 		// エラー
