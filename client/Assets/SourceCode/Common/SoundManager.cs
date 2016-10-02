@@ -25,6 +25,7 @@ public class SoundManager : MonoBehaviour
         //audioSources[mainBGM.ToString()].clip = mainBGM;
     }
 
+    // 音を再生する
     public void Play(SoundData data)
     {
         audioSources[(int)data].Play();

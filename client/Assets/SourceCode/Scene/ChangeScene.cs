@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 // シーン切り替えクラス
 public class ChangeScene 
 {
-
 	// 実行
 	public void Run()
 	{

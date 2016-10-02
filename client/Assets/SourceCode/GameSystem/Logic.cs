@@ -247,11 +247,14 @@ public class Logic : MonoBehaviour
     bool updateBoard(Vector2 key, bool updateFlag)
     {
         int ix = 0; int iy = 0;
+        // ひっくり返すデータリスト
         ArrayList[] revList = new ArrayList[8];
 
         bool changeFlag = false;
         // horizon
-        ix = (int)key.x + 1; iy = (int)key.y;
+        ix = (int)key.x + 1; 
+        iy = (int)key.y;
+
         revList[0] = new ArrayList();
         while (true)
         {
